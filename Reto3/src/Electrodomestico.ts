@@ -1,0 +1,114 @@
+const PrecioBase: number = 100;
+const Color: string = "blanco";
+const Consumo: string = "F";
+const Peso: number = 5;
+
+class Electrodomestico {
+  protected PrecioBase: number;
+  protected Color: string;
+  protected Consumo: string;
+  protected Peso: number;
+
+  constructor(
+    newPrecioBase: number,
+    newColor: string,
+    newConsumo: string,
+    newPeso: number
+  ) {
+    this.PrecioBase = newPrecioBase;
+    if (
+      newColor.toLowerCase() == "blanco" ||
+      newColor.toLowerCase() == "negro" ||
+      newColor.toLowerCase() == "rojo" ||
+      newColor.toLowerCase() == "azul" ||
+      newColor.toLowerCase() == "gris"
+    ) {
+      this.Color = newColor; // blanco, negro, rojo, azul, gris
+    } else {
+      this.Color = Color;
+    }
+    this.Consumo = newConsumo;
+    this.Peso = newPeso;
+  }
+
+  getPrecioBase(): number {
+    return this.PrecioBase;
+  }
+  getColor(): string {
+    return this.Color;
+  }
+  getConsumo(): string {
+    return this.Consumo;
+  }
+  getPeso(): number {
+    return this.Peso;
+  }
+
+  comprobarConsumoEnergetico(letra: string) {
+    if (
+      letra == "A" ||
+      letra == "B" ||
+      letra == "C" ||
+      letra == "D" ||
+      letra == "E" ||
+      letra == "F"
+    ) {
+      return this.Consumo;
+    } else {
+      return Consumo;
+    }
+  }
+  comprobarColor(color: string): string {
+    if (
+      color.toLowerCase() == "blanco" ||
+      color.toLowerCase() == "negro" ||
+      color.toLowerCase() == "rojo" ||
+      color.toLowerCase() == "azul" ||
+      color.toLowerCase() == "gris"
+    ) {
+      return this.Color;
+    } else {
+      return Color;
+    }
+  }
+  precioFinal() {
+    let PrecioConsPeso = this.PrecioBase;
+    let tamaño = this.Peso;
+    switch (this.Consumo) {
+      case "A":
+        PrecioConsPeso = this.PrecioBase + 100;
+        break;
+      case "B":
+        PrecioConsPeso = this.PrecioBase + 80;
+        break;
+      case "C":
+        PrecioConsPeso = this.PrecioBase + 60;
+        break;
+      case "D":
+        PrecioConsPeso = this.PrecioBase + 50;
+        break;
+      case "E":
+        PrecioConsPeso = this.PrecioBase + 30;
+        break;
+      case "F":
+        PrecioConsPeso = this.PrecioBase + 10;
+        break;
+      default:
+        break;
+    }
+    if (tamaño > 0 && tamaño < 19) {
+      PrecioConsPeso = PrecioConsPeso + 10;
+    } else {
+      if (tamaño > 20 && tamaño < 49) {
+        PrecioConsPeso = PrecioConsPeso + 50;
+      } else {
+        if (tamaño > 50 && tamaño < 79) {
+          PrecioConsPeso = PrecioConsPeso + 80;
+        } else {
+          PrecioConsPeso = PrecioConsPeso + 100;
+        }
+      }
+    }
+    return PrecioConsPeso;
+  }
+}
